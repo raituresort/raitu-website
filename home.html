@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Dashboard - Raitu Community Tourism</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Arial', sans-serif;}
+body {background:#f8f9fa; color:#333;}
+header {background:#28a745; color:white; padding:20px; text-align:center;}
+.container {width:90%; max-width:1200px; margin:20px auto;}
+.profile-section {display:flex; gap:20px; background:white; padding:20px; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.1); align-items:center;}
+.profile-section img {width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid #28a745;}
+.profile-details h2 {color:#28a745; margin-bottom:8px;}
+.profile-details p {margin-bottom:5px;}
+.edit-btn {margin-top:10px; padding:8px 15px; background:#28a745; color:white; border:none; border-radius:6px; cursor:pointer;}
+.bookings-section {margin-top:30px;}
+.bookings-section h3 {color:#28a745; margin-bottom:15px;}
+table {width:100%; border-collapse:collapse; background:white; border-radius:12px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.05);}
+table th, table td {padding:12px 15px; text-align:left; border-bottom:1px solid #ddd;}
+table th {background:#28a745; color:white;}
+table tr:hover {background:#f1f1f1;}
+.action-btn {padding:5px 10px; border:none; border-radius:5px; cursor:pointer; color:white;}
+.view-btn {background:#17a2b8;}
+.cancel-btn {background:#dc3545;}
+.feedback-btn {background:#ffc107; color:#333;}
+/* Modal Styles */
+.modal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;}
+.modal-content {background:white; padding:20px; border-radius:12px; width:90%; max-width:500px; position:relative;}
+.close {position:absolute; top:10px; right:15px; font-size:20px; cursor:pointer; color:#333;}
+.modal-content h3 {color:#28a745; margin-bottom:15px;}
+.modal-content label {display:block; margin:10px 0 5px;}
+.modal-content input, .modal-content textarea {width:100%; padding:8px; margin-bottom:10px; border-radius:6px; border:1px solid #ccc;}
+.modal-content button {padding:8px 15px; background:#28a745; color:white; border:none; border-radius:6px; cursor:pointer;}
+@media (max-width:768px){.profile-section{flex-direction:column;align-items:center;} table th, table td{padding:10px;}}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Your Dashboard</h1>
+</header>
+
+<div class="container">
+
+    <!-- Profile Section -->
+    <div class="profile-section">
+        <img src="profile-placeholder.jpg" alt="Profile Photo">
+        <div class="profile-details">
+            <h2>Nahid Hassan</h2>
+            <p><strong>Date of Birth:</strong> 14/02/1978</p>
+            <p><strong>Mobile:</strong> +8801XXXXXXXXX</p>
+            <p><strong>Profession:</strong> Entrepreneur</p>
+            <button class="edit-btn" onclick="openModal('profileModal')">Edit Profile</button>
+        </div>
+    </div>
+
+    <!-- Upcoming Bookings -->
+    <div class="bookings-section">
+        <h3>Upcoming Bookings</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Destination</th>
+                    <th>Check-in</th>
+                    <th>Check-out</th>
+                    <th>Guests</th>
+                    <th>Total Cost</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>RB003</td>
+                    <td>Community Experience</td>
+                    <td>20/01/2026</td>
+                    <td>22/01/2026</td>
+                    <td>3 Guests</td>
+                    <td>BDT 2,100</td>
+                    <td>Confirmed</td>
+                    <td>
+                        <button class="action-btn view-btn" onclick="openModal('bookingModal')">View</button>
+                        <button class="action-btn cancel-btn">Cancel</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Previous Bookings -->
+    <div class="bookings-section">
+        <h3>Previous Bookings</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Destination</th>
+                    <th>Check-in</th>
+                    <th>Check-out</th>
+                    <th>Guests</th>
+                    <th>Total Cost</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>RB001</td>
+                    <td>Village Stay</td>
+                    <td>05/12/2025</td>
+                    <td>07/12/2025</td>
+                    <td>2 Guests</td>
+                    <td>BDT 1,050</td>
+                    <td>Completed</td>
+                    <td>
+                        <button class="action-btn view-btn" onclick="openModal('bookingModal')">View</button>
+                        <button class="action-btn feedback-btn" onclick="openModal('feedbackModal')">Feedback</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>RB002</td>
+                    <td>Nature Trek</td>
+                    <td>15/12/2025</td>
+                    <td>18/12/2025</td>
+                    <td>4 Guests</td>
+                    <td>BDT 2,400</td>
+                    <td>Completed</td>
+                    <td>
+                        <button class="action-btn view-btn" onclick="openModal('bookingModal')">View</button>
+                        <button class="action-btn feedback-btn" onclick="openModal('feedbackModal')">Feedback</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- Profile Modal -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('profileModal')">&times;</span>
+        <h3>Edit Profile</h3>
+        <label>Name</label>
+        <input type="text" value="Nahid Hassan">
+        <label>Date of Birth</label>
+        <input type="date" value="1978-02-14">
+        <label>Mobile</label>
+        <input type="text" value="+8801XXXXXXXXX">
+        <label>Profession</label>
+        <input type="text" value="Entrepreneur">
+        <label>Profile Photo</label>
+        <input type="file">
+        <button>Save Changes</button>
+    </div>
+</div>
+
+<!-- Booking Modal -->
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('bookingModal')">&times;</span>
+        <h3>Booking Details</h3>
+        <p><strong>Booking ID:</strong> RB003</p>
+        <p><strong>Destination:</strong> Community Experience</p>
+        <p><strong>Check-in:</strong> 20/01/2026</p>
+        <p><strong>Check-out:</strong> 22/01/2026</p>
+        <p><strong>Guests:</strong> 3 Guests</p>
+        <p><strong>Total Cost:</strong> BDT 2,100</p>
+        <p><strong>Status:</strong> Confirmed</p>
+        <button>Cancel Booking</button>
+    </div>
+</div>
+
+<!-- Feedback Modal for Previous Bookings -->
+<div id="feedbackModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('feedbackModal')">&times;</span>
+        <h3>Submit Feedback</h3>
+        <label>Rating (1-5)</label>
+        <input type="number" min="1" max="5" value="5">
+        <label>Comments</label>
+        <textarea rows="5" placeholder="Write your feedback here..."></textarea>
+        <button>Submit Feedback</button>
+    </div>
+</div>
+
+<script>
+function openModal(modalId){
+    document.getElementById(modalId).style.display = 'flex';
+}
+function closeModal(modalId){
+    document.getElementById(modalId).style.display = 'none';
+}
+// Close modal when clicking outside content
+window.onclick = function(event){
+    const modals = ['profileModal','bookingModal','feedbackModal'];
+    modals.forEach(id => {
+        const modal = document.getElementById(id);
+        if(event.target == modal){ modal.style.display='none'; }
+    });
+}
+</script>
+
+</body>
+</html>

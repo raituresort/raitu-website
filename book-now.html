@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Book Now | Raitu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+/* HERO BACKGROUND */
+.hero {
+  min-height: 100vh;
+  background: url("images/hero.jpg") center/cover no-repeat;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* HEADER */
+h1 {
+  text-align: center;
+  animation: fadeUp 1s ease;
+}
+
+.subtitle {
+  text-align: center;
+  color: #ddd;
+  margin-bottom: 30px;
+}
+
+/* FORM */
+.booking-box {
+  background: rgba(255,255,255,0.12);
+  padding: 25px;
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 15px;
+}
+
+label {
+  font-size: 14px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  margin-top: 5px;
+}
+
+/* TOTAL */
+.total {
+  margin-top: 20px;
+  background: rgba(0,0,0,0.5);
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+/* BUTTON */
+.btn {
+  display: block;
+  margin: 25px auto 0;
+  padding: 14px 35px;
+  background: #2ecc71;
+  color: #000;
+  border-radius: 30px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #27ae60;
+}
+
+/* ROOMS */
+.rooms {
+  margin-top: 60px;
+}
+
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.room {
+  background: rgba(255,255,255,0.15);
+  padding: 25px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform .3s, background .3s;
+}
+
+.room:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.25);
+}
+
+.room h3 {
+  margin-top: 0;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .room-grid { grid-template-columns: 1fr; }
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(20px); }
+  to { opacity:1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+<div class="content">
+
+<h1>Book Your Stay in Raitu</h1>
+<p class="subtitle">Community-based tourism, nature & culture</p>
+
+<!-- BOOKING FORM -->
+<div class="booking-box">
+  <div class="grid">
+
+    <div>
+      <label>Experience</label>
+      <select>
+        <option>Village Stay</option>
+        <option>Community Experience</option>
+        <option>Nature Trek</option>
+        <option>Cultural Program</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Room Type</label>
+      <select>
+        <option>Dormitory</option>
+        <option>Couple Cottage</option>
+        <option>Family Cottage</option>
+        <option>Villa</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Check-in</label>
+      <input type="text" placeholder="DD/MM/YYYY">
+    </div>
+
+    <div>
+      <label>Check-out</label>
+      <input type="text" placeholder="DD/MM/YYYY">
+    </div>
+
+    <div>
+      <label>Guests</label>
+      <select id="guests" onchange="calc()">
+        <option value="1">1 Guest</option>
+        <option value="2">2 Guests</option>
+        <option value="4">3–4 Guests</option>
+        <option value="5">Group (5+)</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Breakfast</label>
+      <select id="b" onchange="calc()">
+        <option value="0">0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Lunch</label>
+      <select id="l" onchange="calc()">
+        <option value="0">0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Dinner</label>
+      <select id="d" onchange="calc()">
+        <option value="0">0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="total">
+    Total Cost: ৳ <span id="total">0</span>
+  </div>
+
+  <button class="btn">Request Booking</button>
+</div>
+
+<!-- ROOMS -->
+<div class="rooms">
+<h2 style="text-align:center;">Choose Your Room</h2>
+
+<div class="room-grid">
+
+<div class="room">
+<h3>Dormitory</h3>
+<p>Affordable shared accommodation for travelers.</p>
+</div>
+
+<div class="room">
+<h3>Couple Cottage</h3>
+<p>Private and cozy stay for couples.</p>
+</div>
+
+<div class="room">
+<h3>Family Cottage</h3>
+<p>Spacious and comfortable for families.</p>
+</div>
+
+<div class="room">
+<h3>Villa</h3>
+<p>Premium private experience in nature.</p>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<script>
+function calc(){
+  let g = +guests.value;
+  let total = (g*300) + (b.value*150) + (l.value*250) + (d.value*300);
+  document.getElementById("total").innerText = total;
+}
+</script>
+
+</body>
+</html>

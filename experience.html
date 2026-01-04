@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Raitu – Experiences</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+    html { scroll-behavior: smooth; }
+
+    /* NAVIGATION */
+    .nav {
+        position: fixed; top:0; left:0; width:100%;
+        display:flex; justify-content: space-between; align-items: center;
+        padding:20px 50px; background: rgba(0,0,0,0.4); z-index:100;
+        transition: background 0.3s;
+    }
+    .nav.scrolled { background: rgba(0,0,0,0.85); }
+    .nav .logo img { height:50px; transition: transform 0.3s; cursor:pointer; }
+    .nav .logo img:hover { transform: scale(1.05); }
+    .nav ul { list-style:none; display:flex; gap:25px; }
+    .nav ul li a {
+        text-decoration:none; color:white; font-weight:bold; padding:5px 0;
+        transition: all 0.3s; position: relative;
+    }
+    .nav ul li a::after {
+        content:""; position:absolute; bottom:0; left:0; width:0; height:2px; background:#34d399; transition:0.3s;
+    }
+    .nav ul li a:hover::after { width:100%; }
+    .nav ul li a:hover { color:#34d399; }
+
+    /* HERO */
+    .hero { position: relative; height:50vh; background: url('Image/raitu-hero.jpg') center/cover no-repeat; display:flex; flex-direction:column; justify-content:center; align-items:center; }
+    .hero::after { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.35); z-index:1; }
+    .hero-content { position: relative; z-index:2; text-align:center; color:white; max-width:900px; animation: fadeIn 1s ease forwards;}
+    .hero-content h1 { font-size:48px; margin-bottom:15px; transition: transform 0.3s; }
+    .hero-content h1:hover { transform: scale(1.03); }
+
+    /* SECTIONS */
+    section { padding:60px 20px; max-width:1200px; margin:0 auto; }
+    h2 { font-size:36px; margin-bottom:40px; color:#2e8b57; text-align:center; }
+
+    .cards { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; }
+    .card { background:white; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); width:300px; overflow:hidden; text-align:left; transition: transform 0.3s;}
+    .card:hover { transform: translateY(-5px); }
+    .card img { width:100%; height:200px; object-fit:cover; }
+    .card h3 { font-size:22px; margin:15px; color:#2e8b57; }
+    .card p { font-size:16px; margin:0 15px 15px; color:#555; }
+    .card .btn-primary { display:block; text-align:center; margin:0 15px 15px; padding:10px 0; background:#2e8b57; color:white; text-decoration:none; border-radius:5px; font-weight:bold; transition:0.3s;}
+    .card .btn-primary:hover { background:#1e5d3b; }
+
+    /* GUEST TESTIMONIALS */
+    .testimonials { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin-top:40px; }
+    .testimonial { background:#f0fdf4; padding:20px; border-radius:10px; width:300px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
+    .testimonial p { font-size:16px; color:#333; margin-bottom:15px; }
+    .testimonial h4 { font-size:18px; color:#2e8b57; text-align:right; }
+
+    /* FOOTER */
+    footer { background:#2e8b57; color:white; text-align:center; padding:30px 20px; }
+    footer p { margin:0; font-size:16px; }
+
+    @keyframes fadeIn { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform:translateY(0);} }
+
+    @media(max-width:768px){
+        .nav { padding:15px 20px; flex-direction:column; gap:15px; }
+        .nav ul { flex-direction:column; gap:10px; }
+        .hero-content h1 { font-size:32px; }
+        .cards { flex-direction:column; align-items:center; }
+        .testimonials { flex-direction:column; align-items:center; }
+    }
+    @media(max-width:480px){
+        .hero-content h1 { font-size:28px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- HERO + NAVIGATION -->
+<header class="hero" id="hero">
+    <nav class="nav">
+        <div class="logo"><a href="index.html"><img src="Image/raitu-logo.png" alt="Raitu Logo"></a></div>
+        <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="community.html#highlights">Community</a></li>
+            <li><a href="experience.html#experience">Experience</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+            <li><a href="book.html#booking">Book Now</a></li>
+            <li><a href="contact.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="hero-content">
+        <h1>Experience Raitu – Authentic Adventures</h1>
+    </div>
+</header>
+
+<!-- FEATURED EXPERIENCES -->
+<section id="experience">
+    <h2>Featured Experiences</h2>
+    <div class="cards">
+        <div class="card">
+            <img src="Image/experience1.jpg" alt="Village Life">
+            <h3>Village Life Experience</h3>
+            <p>Spend a day with locals, learn traditional crafts and enjoy home-cooked meals.</p>
+            <a href="#" class="btn-primary">View Details</a>
+        </div>
+        <div class="card">
+            <img src="Image/experience2.jpg" alt="Nature Trekking">
+            <h3>Nature Trekking</h3>
+            <p>Explore scenic trails, waterfalls, and wildlife with expert guides.</p>
+            <a href="#" class="btn-primary">View Details</a>
+        </div>
+        <div class="card">
+            <img src="Image/experience3.jpg" alt="Cultural Workshop">
+            <h3>Cultural Workshop</h3>
+            <p>Participate in local music, dance, and craft workshops for a unique experience.</p>
+            <a href="#" class="btn-primary">View Details</a>
+        </div>
+    </div>
+</section>
+
+<!-- WHAT OUR GUESTS SAY -->
+<section id="testimonials">
+    <h2>What Our Guests Say</h2>
+    <div class="testimonials">
+        <div class="testimonial">
+            <p>"The village life experience was unforgettable. The hosts were welcoming and the food was amazing!"</p>
+            <h4>- Ayesha Rahman</h4>
+        </div>
+        <div class="testimonial">
+            <p>"Nature trekking through Raitu's hills was breathtaking. Highly recommend to anyone seeking adventure."</p>
+            <h4>- Jamal Hossain</h4>
+        </div>
+        <div class="testimonial">
+            <p>"Cultural workshops gave me a true insight into the local traditions. Truly memorable."</p>
+            <h4>- Sarah Khan</h4>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 Raitu Community Tourism. All Rights Reserved.</p>
+</footer>
+
+<script>
+window.addEventListener('scroll', function() {
+    const nav = document.querySelector('.nav');
+    if(window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+});
+</script>
+
+</body>
+</html>
